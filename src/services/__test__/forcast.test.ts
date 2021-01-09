@@ -1,5 +1,5 @@
 import { StormGlass } from '@src/clients/stormGlass';
-import { Beach, BeachPosition } from '@src/models/beach';
+import { Beach, GeoPosition } from '@src/models/beach';
 import stormGlassNormalizedResponseFixture from '@test/fixtures/stormglass_normalized_response_3_hours.json';
 import { Forecast, ForecastProcessingInternalError } from '../forecast';
 
@@ -18,7 +18,7 @@ describe('forcast Service', () => {
         lat: -33.792726,
         lng: 151.289824,
         name: 'Manly',
-        position: BeachPosition.E,
+        position: GeoPosition.E,
         user: 'fake-id',
       },
     ];
@@ -87,13 +87,13 @@ describe('forcast Service', () => {
     ];
 
     const forcast = new Forecast(mockedStormGlassService);
-    const beachesWithRating = await forcast.processForecastForBeachs(beaches);
+    const beachesWithRating = await forcast.processForecastForBeaches(beaches);
     expect(beachesWithRating).toEqual(expectedResponse);
   });
 
   it('should return an empty list when the beaches array is empty', async () => {
     const forecast = new Forecast();
-    const response = await forecast.processForecastForBeachs([]);
+    const response = await forecast.processForecastForBeaches([]);
     expect(response).toEqual([]);
   });
 
@@ -103,7 +103,7 @@ describe('forcast Service', () => {
         lat: -33.792726,
         lng: 151.289824,
         name: 'Manly',
-        position: BeachPosition.E,
+        position: GeoPosition.E,
         user: 'fake-id',
       },
     ];
@@ -112,7 +112,7 @@ describe('forcast Service', () => {
       'Error fetching data'
     );
     const forecast = new Forecast(mockedStormGlassService);
-    await expect(forecast.processForecastForBeachs(beaches)).rejects.toThrow(
+    await expect(forecast.processForecastForBeaches(beaches)).rejects.toThrow(
       ForecastProcessingInternalError
     );
   });

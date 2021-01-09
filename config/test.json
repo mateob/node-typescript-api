@@ -4,6 +4,12 @@
             "StormGlass": {
                 "apiToken": "test-token"
             }
+        },
+        "database": {
+            "mongoUrl": "mongodb://172.17.0.3:27017/surf-forecast-test"
+        },
+        "logger": {
+            "enabled": false
         }
     }
 }
