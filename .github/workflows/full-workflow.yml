@@ -42,6 +42,6 @@ jobs:
 
   - name: Deployment
     if: github.ref == 'refs/heads/master'
-    run: git remote add umber ssh://git@geonosis.deploy.umbler.com:9922/jy4rxpvj/mateo-surf-forecast-com.git && git checkout -b master && git push umber master
+    run: git remote add umber ssh://git@geonosis.deploy.umbler.com:9922/jy4rxpvj/mateo-surf-forecast-com.git && git checkout master && git push umber master
     env:
       CLI: true
